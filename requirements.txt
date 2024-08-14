@@ -1,0 +1,3 @@
+reportlab
+english_words
+nltk
