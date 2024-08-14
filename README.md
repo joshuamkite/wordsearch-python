@@ -25,7 +25,7 @@ This Python project generates a customizable word search puzzle using words from
     - [Grid Size and Word Count](#grid-size-and-word-count)
     - [Output Directory](#output-directory)
     - [Cell Size](#cell-size)
-    - [Practical Example:](#practical-example)
+      - [Practical Example:](#practical-example)
     - [Word Length Filtering](#word-length-filtering)
   - [Acknowledgements](#acknowledgements)
 
@@ -154,7 +154,7 @@ The `cell_size` variable in the script controls the size of each individual cell
     cell_size = 12  # Sets each cell to be 12 points wide and high
     ```
 
-### Practical Example:
+#### Practical Example:
 
 - **Small `cell_size` (e.g., 8 points)**:
   - The letters will be placed close together.
