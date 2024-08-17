@@ -39,6 +39,7 @@ This project was inspired by [a request on the PythonLearning subreddit](https:/
 ### Word List Source
 
 - **WordNet via NLTK**: The word list is sourced from WordNet, a large lexical database of English, provided by the Natural Language Toolkit (NLTK). WordNet was chosen for its extensive coverage of English words, allowing for a rich and varied word search experience. Phrases (words containing underscores) and hyphenated words are automatically excluded to ensure only single, unhyphenated words are used.
+- **Word filtering**: We attempt to filter out words that are considered offensive but cannot guarantee that this will be effective or correct in all cases.
 
 ### Grid and Layout
 
@@ -65,6 +66,7 @@ This project was inspired by [a request on the PythonLearning subreddit](https:/
 This project uses the following Python packages:
 - `nltk`: For accessing the WordNet word list.
 - `reportlab`: For generating the PDF output.
+- `better_profanity`: For screening out offensive words
 
 ### Installing Dependencies
 

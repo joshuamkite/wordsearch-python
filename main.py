@@ -6,6 +6,7 @@ from reportlab.pdfgen import canvas
 import nltk
 from nltk.corpus import wordnet
 from datetime import datetime
+from better_profanity import profanity
 
 # Download WordNet data if not already downloaded
 try:
@@ -109,6 +110,23 @@ def create_pdf(grid, words, title, output_dir="wordsearch", cell_size=None):
     c.showPage()
     c.save()
 
+# Function to select appropriate words until the desired number is reached
+
+
+def select_appropriate_words(words_set, num_words):
+    words_list = list(words_set)  # Convert the set to a list
+    selected_words = []
+    while len(selected_words) < num_words:
+        word = random.choice(words_list)
+        if len(word) >= 4 and "_" not in word and "-" not in word:
+            if not profanity.contains_profanity(word):
+                synsets = wordnet.synsets(word)
+                if synsets:
+                    definition = synsets[0].definition()
+                    if not profanity.contains_profanity(definition) and 'offensive' not in definition.lower():
+                        selected_words.append(word)
+    return selected_words
+
 
 # Example usage
 if __name__ == "__main__":
@@ -119,10 +137,11 @@ if __name__ == "__main__":
     output_dir = "wordsearch"  # Default output directory
     cell_size = None  # Automatically calculate cell size
 
-    # Get words from WordNet and filter out phrases (no underscores or hyphens)
+    # Get words from WordNet
     words_set = set(wordnet.words())
-    filtered_words = [word for word in sorted(list(words_set)) if len(word) >= 4 and "_" not in word and "-" not in word]
-    words_to_find = random.sample(filtered_words, default_num_words)
+
+    # Incrementally select appropriate words
+    words_to_find = select_appropriate_words(words_set, default_num_words)
 
     # Generate grid
     grid = generate_word_search(words_to_find, grid_size=default_grid_size)
